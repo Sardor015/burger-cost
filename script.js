@@ -72,3 +72,47 @@ function prepare(item) {
     kcall.innerHTML = food[parentId].kcallSum
 }
 
+
+
+
+
+// 100 
+
+let spanNum = document.querySelector(".span__num")   
+let headerDescr = document.querySelector(".header__descr")
+
+headerDescr.addEventListener('mousemove', function scrollTimer(){
+   
+        random()
+    
+    
+})
+
+
+function random(){
+    function calcSum(k=0){
+            spanNum.innerHTML = k
+            k++
+            if(k<=200){
+                setTimeout(() => {
+                    calcSum(k)
+                }, .1);
+            }  else if (k>=200 && k<=500) {
+                setTimeout(() => {
+                    calcSum(k)
+                }, 20);
+            } else if (k>=500 && k<=990) {
+                setTimeout(() => {
+                    calcSum(k)
+                }, 2);
+            } else if (  k>=990 && k<=1000) {
+                setTimeout(() => {
+                    calcSum(k)
+                }, 1000);
+        }
+    }
+        calcSum()
+    
+}
+random()
+
