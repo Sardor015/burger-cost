@@ -116,3 +116,93 @@ function random(){
 }
 random()
 
+
+const receipt = document.querySelector('.receipt');
+const receiptWindow = document.querySelector('.receipt__window');
+const receiptWindowOut = document.querySelector('.receipt__window-out');
+const receiptWindowBtn = document.querySelector('.receipt__window-btn');
+const addCart = document.querySelector('.addCart');
+
+
+addCart.addEventListener('click', function (){
+    receipt.style.display = 'block';
+    receiptWindow.style.top = '20%';
+    receiptWindow.style.left = '35%';
+
+
+
+    setTimeout(() => {
+        receipt.style.opacity = 1;
+    }, 100);
+
+    let menu = "Sizning chekingiz \n\n";
+    let totalPrice = 0;
+    let totalKcall = 0;
+
+    for (const key in food) {
+        menu = menu + `${food[key].name} ${food[key].amount}x  ${food[key].price}= ${food[key].calcSum}\n\n`
+
+        totalKcall = totalKcall + food[key].kcallSum
+        totalPrice = totalPrice + food[key].calcSum
+
+
+        }
+
+        receiptWindowOut.innerHTML = `${menu} \n Total kcall:  ${totalKcall} calories \n Total  price: ${totalPrice} sum`
+       
+        
+   
+})
+
+receiptWindowBtn.addEventListener('click',function (e) {
+    if(e.target){
+        receiptWindow.style.top = '-100%'
+        setTimeout(() => {
+            receipt.style.display = 'none'
+            receipt.style.opacity = '0'
+        }, 200);
+    }
+})
+
+    
+
+
+const mainProductInfo = [...document.querySelectorAll(".main__product-info")];
+
+for (let i = 0; i < mainProductInfo.length; i++) {
+    mainProductInfo[i].addEventListener("click" , function() {
+        show(this)
+    })
+}
+
+function show(viewImg) {
+    let parent = viewImg.closest('.main__product')
+    let view = document.querySelector('.view')
+    let image = document.querySelector('.view img')
+    let parImg = parent.querySelector('.main__product-info img')
+    let viewClose = document.querySelector('.view__close') 
+    console.log(image)
+
+
+    view.classList.add('active') 
+    let x = parImg.getAttribute('src')
+
+    console.log(x)
+
+    image.removeAttribute("src")
+
+    if(parImg.hasAttribute("src")) {
+        image.setAttribute("src" , `${x}`) 
+    }
+
+    view.addEventListener ('click' , function(e) {
+        if(e.target == e.currentTarget ) {
+            view.classList.remove('active')
+        }
+    })
+
+    viewClose.addEventListener('click' , function() {
+        view.classList.remove('active')
+    })
+}
+
